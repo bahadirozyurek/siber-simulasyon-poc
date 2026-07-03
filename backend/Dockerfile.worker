@@ -1,0 +1,24 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+ARG PROJECT
+ARG ASSEMBLY_NAME
+WORKDIR /src
+
+COPY SiberSimulasyon.sln ./
+COPY SiberSimulasyon.Core/ SiberSimulasyon.Core/
+COPY SiberSimulasyon.Infrastructure/ SiberSimulasyon.Infrastructure/
+COPY SiberSimulasyon.API/ SiberSimulasyon.API/
+COPY SiberSimulasyon.Worker.Camera/ SiberSimulasyon.Worker.Camera/
+COPY SiberSimulasyon.Worker.Nfc/ SiberSimulasyon.Worker.Nfc/
+COPY SiberSimulasyon.Worker.SystemAdmin/ SiberSimulasyon.Worker.SystemAdmin/
+
+RUN dotnet restore SiberSimulasyon.sln
+RUN dotnet publish ${PROJECT} -c Release -o /app/publish
+
+FROM mcr.microsoft.com/dotnet/runtime:8.0
+ARG ASSEMBLY_NAME
+ENV RUNTIME_ASSEMBLY=${ASSEMBLY_NAME} 
+
+WORKDIR /app
+COPY --from=build /app/publish .
+
+ENTRYPOINT ["sh", "-c", "dotnet ${RUNTIME_ASSEMBLY}.dll"]

@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiberSimulasyon.Core", "SiberSimulasyon.Core\SiberSimulasyon.Core.csproj", "{7EF56422-BE71-4BAA-BD70-9272E966C9FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiberSimulasyon.Infrastructure", "SiberSimulasyon.Infrastructure\SiberSimulasyon.Infrastructure.csproj", "{4119CF2B-3616-4D6A-8243-D2EF7FCBAAD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiberSimulasyon.API", "SiberSimulasyon.API\SiberSimulasyon.API.csproj", "{1CF05B63-F82D-477D-A9F2-3D3486772E11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiberSimulasyon.Worker.Camera", "SiberSimulasyon.Worker.Camera\SiberSimulasyon.Worker.Camera.csproj", "{64FF142A-17A7-483F-AF20-D6E4C42091B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiberSimulasyon.Worker.Nfc", "SiberSimulasyon.Worker.Nfc\SiberSimulasyon.Worker.Nfc.csproj", "{4756433F-3507-4DD1-97BC-072C27725BE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiberSimulasyon.Worker.SystemAdmin", "SiberSimulasyon.Worker.SystemAdmin\SiberSimulasyon.Worker.SystemAdmin.csproj", "{483AB59A-E502-4088-9974-63AF10EA032A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7EF56422-BE71-4BAA-BD70-9272E966C9FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EF56422-BE71-4BAA-BD70-9272E966C9FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EF56422-BE71-4BAA-BD70-9272E966C9FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EF56422-BE71-4BAA-BD70-9272E966C9FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4119CF2B-3616-4D6A-8243-D2EF7FCBAAD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4119CF2B-3616-4D6A-8243-D2EF7FCBAAD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4119CF2B-3616-4D6A-8243-D2EF7FCBAAD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4119CF2B-3616-4D6A-8243-D2EF7FCBAAD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CF05B63-F82D-477D-A9F2-3D3486772E11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CF05B63-F82D-477D-A9F2-3D3486772E11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CF05B63-F82D-477D-A9F2-3D3486772E11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CF05B63-F82D-477D-A9F2-3D3486772E11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64FF142A-17A7-483F-AF20-D6E4C42091B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64FF142A-17A7-483F-AF20-D6E4C42091B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64FF142A-17A7-483F-AF20-D6E4C42091B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64FF142A-17A7-483F-AF20-D6E4C42091B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4756433F-3507-4DD1-97BC-072C27725BE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4756433F-3507-4DD1-97BC-072C27725BE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4756433F-3507-4DD1-97BC-072C27725BE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4756433F-3507-4DD1-97BC-072C27725BE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{483AB59A-E502-4088-9974-63AF10EA032A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{483AB59A-E502-4088-9974-63AF10EA032A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{483AB59A-E502-4088-9974-63AF10EA032A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{483AB59A-E502-4088-9974-63AF10EA032A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

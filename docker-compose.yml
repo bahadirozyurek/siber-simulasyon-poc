@@ -1,0 +1,110 @@
+version: '3.8'
+
+networks:
+  simulasyon_net:
+    driver: bridge
+
+services:
+  postgres_db:
+    image: postgres:16-alpine
+    container_name: simulasyon_db
+    environment:
+      POSTGRES_USER: nanoadmin55
+      POSTGRES_PASSWORD: SuperSecurePassword123!
+      POSTGRES_DB: siber_simulasyon_db
+    ports:
+      - "5433:5432"
+    networks:
+      - simulasyon_net
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: simulasyon_broker
+    environment:
+      RABBITMQ_DEFAULT_USER: broker_user
+      RABBITMQ_DEFAULT_PASS: BrokerSecurePass321!!
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - simulasyon_net
+  web_panel_api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.api
+    container_name: simulasyon_api
+    ports:
+      - "8080:8080"
+    environment:
+      - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__DefaultConnection=Host=postgres_db;Port=5432;Database=siber_simulasyon_db;Username=nanoadmin55;Password=SuperSecurePassword123!
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__Port=5672
+      - RabbitMQ__Username=broker_user
+      - RabbitMQ__Password=BrokerSecurePass321!!
+    depends_on:
+      - postgres_db
+      - rabbitmq
+    networks:
+      - simulasyon_net
+  worker_camera:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.worker
+      args:
+        PROJECT: SiberSimulasyon.Worker.Camera/SiberSimulasyon.Worker.Camera.csproj
+        ASSEMBLY_NAME: SiberSimulasyon.Worker.Camera
+    container_name: worker_camera_sim
+    environment:
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__Port=5672
+      - RabbitMQ__Username=broker_user
+      - RabbitMQ__Password=BrokerSecurePass321!!
+    ports:
+      - "8554:8554"
+    depends_on:
+      - rabbitmq
+    networks:
+      - simulasyon_net
+  worker_sysadmin:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.worker
+      args:
+        PROJECT: SiberSimulasyon.Worker.SystemAdmin/SiberSimulasyon.Worker.SystemAdmin.csproj
+        ASSEMBLY_NAME: SiberSimulasyon.Worker.SystemAdmin
+    container_name: worker_sysadmin_sim
+    environment:
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__Port=5672
+      - RabbitMQ__Username=broker_user
+      - RabbitMQ__Password=BrokerSecurePass321!!
+    ports:
+      - "2222:2222/udp"
+    depends_on:
+      - rabbitmq
+    networks:
+      - simulasyon_net
+  worker_nfc:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.worker
+      args:
+        PROJECT: SiberSimulasyon.Worker.Nfc/SiberSimulasyon.Worker.Nfc.csproj
+        ASSEMBLY_NAME: SiberSimulasyon.Worker.Nfc
+    container_name: worker_nfc_sim
+    environment:
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__Port=5672
+      - RabbitMQ__Username=broker_user
+      - RabbitMQ__Password=BrokerSecurePass321!!
+    volumes:
+      - /tmp/sim_sensors:/app/sensors
+    depends_on:
+      - rabbitmq
+    networks:
+      - simulasyon_net
+
+volumes:
+  pgdata:

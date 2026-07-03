@@ -1,0 +1,20 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+
+COPY SiberSimulasyon.sln ./
+COPY SiberSimulasyon.Core/ SiberSimulasyon.Core/
+COPY SiberSimulasyon.Infrastructure/ SiberSimulasyon.Infrastructure/
+COPY SiberSimulasyon.API/ SiberSimulasyon.API/
+COPY SiberSimulasyon.Worker.Camera/ SiberSimulasyon.Worker.Camera/
+COPY SiberSimulasyon.Worker.Nfc/ SiberSimulasyon.Worker.Nfc/
+COPY SiberSimulasyon.Worker.SystemAdmin/ SiberSimulasyon.Worker.SystemAdmin/
+
+RUN dotnet restore SiberSimulasyon.sln
+RUN dotnet publish SiberSimulasyon.API/SiberSimulasyon.API.csproj -c Release -o /app/publish
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
+WORKDIR /app
+COPY --from=build /app/publish .
+ENV ASPNETCORE_URLS=http://+:8080
+EXPOSE 8080
+ENTRYPOINT ["dotnet", "SiberSimulasyon.API.dll"]
