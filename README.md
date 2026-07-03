@@ -1,10 +1,4 @@
-<p align="center">
-  <img src="frontend/public/dashboard.png" alt="Cyber-Watcher Dashboard" width="900">
-</p>
-
 # Cyber-Watcher
-
-...
 
 Cyber-Watcher, bir **SOC (Security Operations Center)** ortamını simüle eden mikroservis tabanlı bir Proof of Concept (PoC) projesidir.
 
@@ -134,6 +128,14 @@ echo -n "linux-sunucu-01:PASIF" | nc -u -w1 localhost 2222
 - NFC turnike olay simülasyonu
 - Rol tabanlı yetkilendirme (RBAC)
 - Admin işlem logları (Audit Logging)
+
+---
+
+## Görsel
+<p align="center">
+  <img src="frontend/public/dashboard.png" alt="Cyber-Watcher Dashboard" width="900">
+</p>
+
 
 ---
 
